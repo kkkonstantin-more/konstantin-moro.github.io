@@ -1,14 +1,15 @@
 import React from 'react';
-import { Container, CssBaseline, MuiThemeProvider } from '@material-ui/core';
+import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
 import { getTheme } from './theme';
-import LoginPage from './pages/LoginPage';
+import WelcomePage from './pages/WelcomePage';
+import Container from './shared/container';
 
 const App = () => {
   return (
     <MuiThemeProvider theme={getTheme()}>
       <CssBaseline />
       <Container>
-        <LoginPage />
+        <WelcomePage />
       </Container>
     </MuiThemeProvider>
   );

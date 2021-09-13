@@ -16,4 +16,18 @@ export const overrides: Overrides = {
   MuiCssBaseline: {
     '@global': globalOverrides,
   },
+
+  MuiButton: {
+    root: {
+      fontSize: '1.2rem',
+    },
+
+    sizeLarge: {
+      fontSize: '1.8rem',
+    },
+
+    sizeSmall: {
+      fontSize: '1rem',
+    },
+  },
 };

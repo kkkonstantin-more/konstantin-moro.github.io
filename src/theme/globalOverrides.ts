@@ -1,6 +1,7 @@
 import { CSSProperties } from 'react';
 
 import { breakpoints } from './breakpoints';
+import { palette } from './palette';
 
 const fontSizing: CSSProperties = {
   fontSize: '62.5%', // 10px
@@ -32,6 +33,7 @@ export const globalOverrides = {
   body: {
     fontSize: '1.4rem',
     height: 'inherit',
+    backgroundColor: palette.primary.light,
 
     // react entry element
     '& > div': {
