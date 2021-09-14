@@ -20,7 +20,7 @@ const WelcomePage = () => {
 
   function openGuestsLogin(): void {
     setIsModalOpened(true);
-    setLoginType(LoginFormType.NoPassword);
+    setLoginType(LoginFormType.Guest);
   }
 
   function closeModal(): void {

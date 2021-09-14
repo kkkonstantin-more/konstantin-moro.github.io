@@ -1,6 +1,5 @@
 export enum LoginFormType {
   Default = 'DEFAULT',
-  NoPassword = 'NO_PASSWORD',
   Guest = 'GUEST',
 }
 
@@ -8,18 +7,9 @@ export interface LoginFormProps {
   type: LoginFormType;
 }
 
-export interface DefaultInputs {
+export interface LoginInputs {
   name: string;
-  password: string;
-}
-
-export interface NoPasswordInputs {
-  name: string;
-  email: string;
-}
-
-export interface GuestInputs {
-  name: string;
-  email: string;
-  description: string;
+  email?: string;
+  password?: string;
+  requestDescription?: string;
 }

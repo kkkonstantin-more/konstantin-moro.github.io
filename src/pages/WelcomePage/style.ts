@@ -43,6 +43,6 @@ export default makeStyles({
 
   formWrapper: {
     padding: '2rem',
-    minWidth: '40rem',
+    width: '40rem',
   },
 });

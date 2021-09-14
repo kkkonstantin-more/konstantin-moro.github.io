@@ -9,9 +9,10 @@ export default makeStyles({
     '& > *:not(:last-child)': {
       marginBottom: '2rem',
     },
+  },
 
-    '& button': {
-      marginRight: 'auto',
-    },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
 });
