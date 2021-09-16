@@ -3,15 +3,22 @@ import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
 import { getTheme } from './theme';
 import WelcomePage from './pages/WelcomePage';
 import Container from './shared/container';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 const App = () => {
   return (
-    <MuiThemeProvider theme={getTheme()}>
-      <CssBaseline />
-      <Container>
-        <WelcomePage />
-      </Container>
-    </MuiThemeProvider>
+    <BrowserRouter>
+      <MuiThemeProvider theme={getTheme()}>
+        <CssBaseline />
+        <Container>
+          <Switch>
+            <Route path="/">
+              <WelcomePage />
+            </Route>
+          </Switch>
+        </Container>
+      </MuiThemeProvider>
+    </BrowserRouter>
   );
 };
 
