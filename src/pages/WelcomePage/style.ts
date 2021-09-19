@@ -12,14 +12,18 @@ export default makeStyles({
     marginBottom: '4rem',
   },
 
-  photo: {
+  photoContainer: {
     width: '20%',
+  },
+
+  photo: {
+    width: '100%',
     height: 'auto',
     borderRadius: 4,
   },
 
   longReadText: {
-    flexGrow: 1,
+    width: '80%',
     marginLeft: '2rem',
     fontSize: '2rem',
   },
@@ -28,11 +32,30 @@ export default makeStyles({
     fontSize: '3.5rem',
     margin: '0 auto',
     fontStyle: 'italic',
-    marginBottom: '3rem',
+    marginBottom: '5rem',
   },
 
   loginButtons: {
     margin: '0 auto',
+  },
+
+  loginOptions: {
+    display: 'flex',
+    margin: '0 auto',
+  },
+
+  loginOption: {
+    padding: '2rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    '&:first-child': {
+      borderRight: '1px solid lightgrey',
+    },
+  },
+
+  loginDescription: {
+    marginBottom: '1rem',
   },
 
   modal: {
