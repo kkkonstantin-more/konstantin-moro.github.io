@@ -1,7 +1,13 @@
 import { makeStyles } from '@material-ui/core';
 
 export default makeStyles({
-  root: {
+  root: {},
+
+  tabs: {
+    marginBottom: '2rem',
+  },
+
+  form: {
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -14,5 +20,10 @@ export default makeStyles({
   buttons: {
     display: 'flex',
     justifyContent: 'space-between',
+    marginTop: '2rem',
+  },
+
+  alert: {
+    fontSize: '1.4rem',
   },
 });

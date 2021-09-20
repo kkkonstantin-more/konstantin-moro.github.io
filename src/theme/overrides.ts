@@ -19,7 +19,7 @@ export const overrides: Overrides = {
 
   MuiButton: {
     root: {
-      fontSize: '1.2rem',
+      fontSize: '1.4rem',
     },
 
     sizeLarge: {
@@ -28,6 +28,12 @@ export const overrides: Overrides = {
 
     sizeSmall: {
       fontSize: '1rem',
+    },
+  },
+
+  MuiTab: {
+    root: {
+      fontSize: '1.3rem',
     },
   },
 };

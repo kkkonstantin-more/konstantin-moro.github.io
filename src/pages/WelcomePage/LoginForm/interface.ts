@@ -8,7 +8,7 @@ export interface LoginFormProps {
 }
 
 export interface LoginInputs {
-  name: string;
+  username: string;
   email?: string;
   password?: string;
   requestDescription?: string;

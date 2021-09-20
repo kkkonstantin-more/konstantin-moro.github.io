@@ -26,14 +26,14 @@ const fontSizing: CSSProperties = {
 export const globalOverrides = {
   html: {
     height: '100%',
-    fontFamily: "'Roboto', Arial, sans-serif",
+    fontFamily: 'Montserrat, sans-serif !important',
     ...fontSizing,
   },
 
   body: {
-    fontSize: '1.4rem',
+    fontSize: '1.6rem',
     height: 'inherit',
-    backgroundColor: palette.primary.light,
+    background: `linear-gradient(90deg, ${palette.primary.light} 50%, ${palette.primary.main} 50%)`,
 
     // react entry element
     '& > div': {
