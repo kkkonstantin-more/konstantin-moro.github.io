@@ -11,9 +11,11 @@ export default makeStyles({
   imageContainer: {
     display: 'flex',
     alignItems: 'center',
-    marginBottom: '2rem',
-    padding: '2rem',
-    borderBottom: '1px solid lightgrey',
+    padding: '4rem 2rem',
+    '&:not(:last-child)': {
+      marginBottom: '2rem',
+      borderBottom: '1px dashed lightgrey',
+    },
   },
 
   imageContainerReverse: {
@@ -22,6 +24,13 @@ export default makeStyles({
 
   imageDescription: {
     width: '30%',
+    padding: '2rem',
+    borderRight: '1px solid lightgrey',
+  },
+
+  imageDescriptionReverse: {
+    borderRight: 'none',
+    borderLeft: '1px solid lightgrey',
   },
 
   photo: {

@@ -1,15 +1,20 @@
 import { action, observable, computed, toJS } from 'mobx';
-import { AboutSergeyPageText, LoginPageText } from './interface';
+import { AboutSergeyPageText, LoginPageText, PhotoWithDescription } from './interface';
 import axios from 'axios';
 import { LoginInputs } from '../../pages/WelcomePage/LoginForm/interface';
+import { parsePhotos } from './util';
 
 export default class MainStore {
   @observable token: string | null = null;
 
+  // page texts
   @observable loginPageText: LoginPageText | null = null;
   @observable aboutSergeyPageText: AboutSergeyPageText | null = null;
 
+  // photos
   @observable russiaPhotos: any[] | null = null;
+  @observable netherlandsPhotos: any[] | null = null;
+  @observable belgiumPhotos: any[] | null = null;
 
   constructor() {
     const token = localStorage.getItem('token');
@@ -19,32 +24,28 @@ export default class MainStore {
     }
   }
 
-  @computed get photosFromRussia():
-    | {
-        photoUrl: string;
-        description: string;
-        dimensions: {
-          width: number;
-          height: number;
-        };
-      }[]
-    | null {
+  @computed get photosFromRussia(): PhotoWithDescription[] | null {
     if (!this.russiaPhotos) {
       return null;
     }
 
-    return this.russiaPhotos.map((item) => {
-      const photo = item.photo.formats?.small ?? item.photo.formats.thumbnail;
+    return parsePhotos(this.russiaPhotos);
+  }
 
-      return {
-        description: item.textDescription,
-        photoUrl: `${process.env.REACT_APP_API_URL}${photo.url}`,
-        dimensions: {
-          width: photo.width,
-          height: photo.height,
-        },
-      };
-    });
+  @computed get photosFromNetherlands(): PhotoWithDescription[] | null {
+    if (!this.netherlandsPhotos) {
+      return null;
+    }
+
+    return parsePhotos(this.netherlandsPhotos);
+  }
+
+  @computed get photosFromBelgium(): PhotoWithDescription[] | null {
+    if (!this.belgiumPhotos) {
+      return null;
+    }
+
+    return parsePhotos(this.belgiumPhotos);
   }
 
   @action fetchLoginPageText = async (): Promise<void> => {
@@ -68,8 +69,26 @@ export default class MainStore {
       method: 'get',
       url: `${process.env.REACT_APP_API_URL}/russia-photos`,
     });
-    console.log(res.data);
+
     this.russiaPhotos = res.data;
+  };
+
+  @action fetchNetherlandsPhotos = async (): Promise<void> => {
+    const res = await axios({
+      method: 'get',
+      url: `${process.env.REACT_APP_API_URL}/netherlands-photos`,
+    });
+
+    this.netherlandsPhotos = res.data;
+  };
+
+  @action fetchBelgiumPhotos = async (): Promise<void> => {
+    const res = await axios({
+      method: 'get',
+      url: `${process.env.REACT_APP_API_URL}/belgium-photos`,
+    });
+
+    this.belgiumPhotos = res.data;
   };
 
   @action setUserToken = (token: string) => {

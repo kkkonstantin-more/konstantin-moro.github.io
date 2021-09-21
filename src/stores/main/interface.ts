@@ -9,3 +9,12 @@ export interface LoginPageText {
 export interface AboutSergeyPageText {
   textAboutSergey: string;
 }
+
+export interface PhotoWithDescription {
+  photoUrl: string;
+  description: string;
+  dimensions: {
+    width: number;
+    height: number;
+  };
+}
