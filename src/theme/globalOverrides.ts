@@ -33,7 +33,7 @@ export const globalOverrides = {
   body: {
     fontSize: '1.6rem',
     height: 'inherit',
-    background: `linear-gradient(90deg, ${palette.primary.light} 50%, ${palette.primary.main} 50%)`,
+    background: `linear-gradient(90deg, ${palette.primary.main} 50%, ${palette.secondary.main} 50%)`,
 
     // react entry element
     '& > div': {

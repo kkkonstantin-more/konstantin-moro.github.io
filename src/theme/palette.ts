@@ -9,6 +9,6 @@ export const palette: { primary: PaletteColor; secondary: Pick<PaletteColor, 'ma
   },
 
   secondary: {
-    main: '#7C4DFF',
+    main: '#777089',
   },
 };

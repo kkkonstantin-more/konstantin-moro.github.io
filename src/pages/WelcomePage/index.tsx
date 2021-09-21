@@ -12,7 +12,7 @@ import useStores from '../../stores';
 
 const songUrl = require('../../assets/molitva.mp3').default;
 
-const LoginPage = observer(() => {
+const LoginPage = () => {
   const classes = useStyles();
 
   const { mainStore } = useStores();
@@ -88,6 +88,6 @@ const LoginPage = observer(() => {
       </Modal>
     </div>
   );
-});
+};
 
-export default LoginPage;
+export default observer(LoginPage);
