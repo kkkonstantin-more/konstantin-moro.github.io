@@ -1,7 +1,8 @@
 import { CSSProperties } from 'react';
 
 import { breakpoints } from './breakpoints';
-import { palette } from './palette';
+
+import imgSrc from '../assets/background.jpg';
 
 const fontSizing: CSSProperties = {
   fontSize: '62.5%', // 10px
@@ -26,14 +27,17 @@ const fontSizing: CSSProperties = {
 export const globalOverrides = {
   html: {
     height: '100%',
-    fontFamily: 'Montserrat, sans-serif !important',
+    fontFamily: 'Montserrat, sans-serif',
     ...fontSizing,
   },
 
   body: {
     fontSize: '1.6rem',
     height: 'inherit',
-    background: `linear-gradient(90deg, ${palette.primary.main} 50%, ${palette.secondary.main} 50%)`,
+    backgroundImage: `url('${imgSrc}')`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
 
     // react entry element
     '& > div': {

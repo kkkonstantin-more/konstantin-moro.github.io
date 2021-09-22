@@ -1,15 +1,16 @@
-import { action, observable, computed, toJS } from 'mobx';
-import { AboutSergeyPageText, LoginPageText, PhotoWithDescription } from './interface';
+import { action, observable, computed } from 'mobx';
+import { AboutSergeyPageText, FarewellPageContent, LoginPageText, PhotoWithDescription } from './interface';
 import axios from 'axios';
-import { LoginInputs } from '../../pages/WelcomePage/LoginForm/interface';
-import { parsePhotos } from './util';
+import { LoginInputs } from '../../pages/LoginPage/LoginForm/interface';
+import { parsePhoto, parsePhotos } from './util';
 
 export default class MainStore {
   @observable token: string | null = null;
 
-  // page texts
+  // pages content
   @observable loginPageText: LoginPageText | null = null;
   @observable aboutSergeyPageText: AboutSergeyPageText | null = null;
+  @observable farewellPageContent: FarewellPageContent | null = null;
 
   // photos
   @observable russiaPhotos: any[] | null = null;
@@ -48,6 +49,7 @@ export default class MainStore {
     return parsePhotos(this.belgiumPhotos);
   }
 
+  // fetch page content
   @action fetchLoginPageText = async (): Promise<void> => {
     const res = await axios({
       method: 'get',
@@ -62,6 +64,18 @@ export default class MainStore {
       url: `${process.env.REACT_APP_API_URL}/about-sergey-page`,
     });
     this.aboutSergeyPageText = res.data;
+  };
+
+  @action fetchFarewellPageContent = async (): Promise<void> => {
+    const res = await axios({
+      method: 'get',
+      url: `${process.env.REACT_APP_API_URL}/farewell-page`,
+    });
+
+    this.farewellPageContent = {
+      ...res.data,
+      photo: parsePhoto(res.data.photoBurialPlace),
+    };
   };
 
   @action fetchRussiaPhotos = async (): Promise<void> => {

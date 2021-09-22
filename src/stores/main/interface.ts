@@ -10,11 +10,20 @@ export interface AboutSergeyPageText {
   textAboutSergey: string;
 }
 
-export interface PhotoWithDescription {
+export interface FarewellPageContent {
+  textInfo: string;
+  textBurialPlace: string;
+  photo: any;
+}
+
+export interface Photo {
   photoUrl: string;
-  description: string;
   dimensions: {
     width: number;
     height: number;
   };
+}
+
+export interface PhotoWithDescription extends Photo {
+  description: string;
 }

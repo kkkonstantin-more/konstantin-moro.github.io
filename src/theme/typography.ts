@@ -1,7 +1,7 @@
 import { TypographyOptions } from '@material-ui/core/styles/createTypography';
 
 export const typography: TypographyOptions = {
-  fontFamily: 'Montserrat, sans-serif !important',
+  fontFamily: 'Montserrat, sans-serif',
   // default fontSize
   body1: {
     fontSize: '1.4rem',
