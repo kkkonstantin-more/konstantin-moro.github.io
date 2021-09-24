@@ -2,17 +2,21 @@ import React, { useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 import useStyles from './style';
+import { useHistory, RouteComponentProps } from 'react-router-dom';
 
 import { Button, Tab, Tabs, TextField } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { LoginFormProps, LoginFormType, LoginInputs } from './interface';
 import useStores from '../../../stores';
+import axios from 'axios';
 
 const LoginForm = ({ type }: LoginFormProps) => {
   const classes = useStyles();
 
   const { mainStore } = useStores();
   const { registerUser, loginUser } = mainStore;
+
+  const history: RouteComponentProps['history'] = useHistory();
 
   const { register, handleSubmit, reset } = useForm<LoginInputs>({
     defaultValues: {
@@ -25,6 +29,7 @@ const LoginForm = ({ type }: LoginFormProps) => {
 
   const [selectedTab, setSelectedTab] = useState<LoginFormType>(type);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const nameLabel = 'Имя Фамилия';
   const passwordLabel = 'Пароль';
@@ -35,21 +40,36 @@ const LoginForm = ({ type }: LoginFormProps) => {
     if (selectedTab === LoginFormType.Guest) {
       try {
         await registerUser(data);
+        await axios({
+          url: `${process.env.REACT_APP_API_URL}/send-email-user-registered`,
+          method: 'post',
+          data: {
+            username: data.username,
+            email: data.email,
+          },
+        });
         setErrorMessage(null);
+        setSuccessMessage('Запрос успешно отправлен! Ожидайте подтверждения администратора');
+        setTimeout(() => {
+          setSuccessMessage(null);
+        }, 10000);
+        reset();
       } catch (e: any) {
-        console.error(e, e.message);
         if (e.statusCode === 400) {
-          setErrorMessage('Такой email или имя уже зарегистирован');
+          setErrorMessage('Такой email или имя уже существует');
         } else {
           setErrorMessage('Что-то пошло не так, проверьте введенные данные и попробуйте еще раз');
         }
       }
     } else {
       try {
-        await loginUser({
-          password: data.password as string,
-          identifier: data.username,
-        });
+        await loginUser(
+          {
+            password: data.password as string,
+            identifier: data.username,
+          },
+          history
+        );
       } catch (e: any) {
         console.error(e, e.message);
         setErrorMessage('Что-то пошло не так, проверьте введенные данные и попробуйте еще раз');
@@ -69,8 +89,8 @@ const LoginForm = ({ type }: LoginFormProps) => {
           setSelectedTab(newValue);
         }}
         value={selectedTab}
-        indicatorColor="primary"
-        textColor="primary"
+        indicatorColor="secondary"
+        textColor="secondary"
         variant="fullWidth"
       >
         <Tab value={LoginFormType.Default} label="Войти" />
@@ -78,11 +98,25 @@ const LoginForm = ({ type }: LoginFormProps) => {
       </Tabs>
 
       <form className={classes.form} onSubmit={handleSubmit(submitForm)} onReset={resetForm}>
-        <TextField label={nameLabel} {...register('username')} />
-        <TextField type="password" label={passwordLabel} {...register('password')} />
-        {selectedTab === LoginFormType.Guest && <TextField type="email" label="Email" {...register('email')} />}
+        <TextField color="secondary" label={nameLabel} {...register('username')} />
+        <TextField color="secondary" type="password" label={passwordLabel} {...register('password')} />
         {selectedTab === LoginFormType.Guest && (
-          <TextField label={requestDescriptionLabel} multiline={true} minRows={4} {...register('requestDescription')} />
+          <TextField color="secondary" type="email" label="Email" {...register('email')} />
+        )}
+        {selectedTab === LoginFormType.Guest && (
+          <TextField
+            color="secondary"
+            label={requestDescriptionLabel}
+            multiline={true}
+            minRows={4}
+            {...register('requestDescription')}
+          />
+        )}
+
+        {successMessage !== null && (
+          <Alert className={classes.alert} severity="success">
+            {successMessage}
+          </Alert>
         )}
 
         {errorMessage !== null && (
@@ -92,7 +126,7 @@ const LoginForm = ({ type }: LoginFormProps) => {
         )}
 
         <div className={classes.buttons}>
-          <Button color="primary" type="submit" variant="outlined">
+          <Button color="secondary" type="submit" variant="outlined">
             {selectedTab === LoginFormType.Default ? 'Войти' : 'Отправить'}
           </Button>
           <Button type="reset" variant="outlined">

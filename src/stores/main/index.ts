@@ -1,11 +1,13 @@
 import { action, observable, computed } from 'mobx';
-import { AboutSergeyPageText, FarewellPageContent, LoginPageText, PhotoWithDescription } from './interface';
+import { AboutSergeyPageText, FarewellPageContent, LoginPageText, PhotoWithDescription, UserData } from './interface';
 import axios from 'axios';
 import { LoginInputs } from '../../pages/LoginPage/LoginForm/interface';
 import { parsePhoto, parsePhotos } from './util';
+import { RouteComponentProps } from 'react-router-dom';
 
 export default class MainStore {
   @observable token: string | null = null;
+  @observable userData: UserData | null = null;
 
   // pages content
   @observable loginPageText: LoginPageText | null = null;
@@ -19,9 +21,10 @@ export default class MainStore {
 
   constructor() {
     const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
 
-    if (token) {
-      this.token = token;
+    if (token && username) {
+      this.userData = { token, username };
     }
   }
 
@@ -62,6 +65,9 @@ export default class MainStore {
     const res = await axios({
       method: 'get',
       url: `${process.env.REACT_APP_API_URL}/about-sergey-page`,
+      headers: {
+        Authorization: `Bearer ${this.userData?.token}`,
+      },
     });
     this.aboutSergeyPageText = res.data;
   };
@@ -122,15 +128,22 @@ export default class MainStore {
     }
   };
 
-  @action loginUser = async (data: { identifier: string; password: string }) => {
+  @action loginUser = async (
+    data: { identifier: string; password: string },
+    history: RouteComponentProps['history']
+  ) => {
     const res = await axios({
       method: 'post',
       url: `${process.env.REACT_APP_API_URL}/auth/local`,
       data,
     });
 
-    if (res.data.jwt) {
-      this.setUserToken(res.data.jwt);
+    if (res.data.jwt && res.data.user?.username) {
+      this.userData = { username: res.data.user.username, token: res.data.jwt };
+      localStorage.setItem('token', res.data.jwt);
+      localStorage.setItem('username', res.data.user.username);
     }
+
+    history.push('/about');
   };
 }

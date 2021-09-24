@@ -1,3 +1,8 @@
+export interface UserData {
+  username: string;
+  token: string;
+}
+
 export interface LoginPageText {
   textPhotoDescription: string;
   textTitle: string;

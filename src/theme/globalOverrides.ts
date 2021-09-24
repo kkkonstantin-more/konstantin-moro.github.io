@@ -2,7 +2,7 @@ import { CSSProperties } from 'react';
 
 import { breakpoints } from './breakpoints';
 
-import imgSrc from '../assets/background.jpg';
+import imgSrc from '../assets/background-img.jpg';
 
 const fontSizing: CSSProperties = {
   fontSize: '62.5%', // 10px
@@ -26,14 +26,14 @@ const fontSizing: CSSProperties = {
 
 export const globalOverrides = {
   html: {
-    height: '100%',
     fontFamily: 'Montserrat, sans-serif',
     ...fontSizing,
+    minHeight: '100vh',
   },
 
   body: {
     fontSize: '1.6rem',
-    height: 'inherit',
+    minHeight: '100vh',
     backgroundImage: `url('${imgSrc}')`,
     backgroundPosition: 'center',
     backgroundSize: 'cover',

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 export default makeStyles(({ breakpoints }) => ({
   root: {
     display: 'flex',
-    height: '100%',
+    minHeight: '100vh',
     fontFamily: "'Marck Script', cursive",
     position: 'relative',
     color: 'white',
@@ -86,7 +86,6 @@ export default makeStyles(({ breakpoints }) => ({
 
   loginButtons: {
     display: 'flex',
-    margin: '0 auto',
     '& > *:first-child': {
       marginRight: '2rem',
     },
