@@ -94,7 +94,7 @@ const LoginForm = ({ type }: LoginFormProps) => {
         variant="fullWidth"
       >
         <Tab value={LoginFormType.Default} label="Войти" />
-        <Tab value={LoginFormType.Guest} label="Запросить пароль" />
+        <Tab value={LoginFormType.Guest} label="Запросить доступ" />
       </Tabs>
 
       <form className={classes.form} onSubmit={handleSubmit(submitForm)} onReset={resetForm}>
