@@ -89,6 +89,9 @@ export default makeStyles(({ breakpoints }) => ({
     '& > *:first-child': {
       marginRight: '2rem',
     },
+    [breakpoints.down(breakpoints.values.tabPort)]: {
+      justifyContent: 'center',
+    },
   },
 
   modal: {

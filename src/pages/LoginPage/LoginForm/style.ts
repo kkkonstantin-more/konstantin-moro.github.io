@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-export default makeStyles({
+export default makeStyles(() => ({
   root: {},
 
   tabs: {
@@ -26,4 +26,4 @@ export default makeStyles({
   alert: {
     fontSize: '1.4rem',
   },
-});
+}));
