@@ -132,17 +132,17 @@ export default class MainStore {
     data: { identifier: string; password: string },
     history: RouteComponentProps['history']
   ) => {
-    const res = await axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/auth/local`,
-      data,
-    });
+    // const res = await axios({
+    //   method: 'post',
+    //   url: `${process.env.REACT_APP_API_URL}/auth/local`,
+    //   data,
+    // });
 
-    if (res.data.jwt && res.data.user?.username) {
-      this.userData = { username: res.data.user.username, token: res.data.jwt };
-      localStorage.setItem('token', res.data.jwt);
-      localStorage.setItem('username', res.data.user.username);
-    }
+    // if (res.data.jwt && res.data.user?.username) {
+    //   this.userData = { username: res.data.user.username, token: res.data.jwt };
+    //   localStorage.setItem('token', res.data.jwt);
+    //   localStorage.setItem('username', res.data.user.username);
+    // }
 
     history.push('/about');
   };

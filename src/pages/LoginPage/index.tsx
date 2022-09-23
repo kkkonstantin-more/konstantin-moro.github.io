@@ -10,6 +10,7 @@ import LoginForm from './LoginForm';
 import { LoginFormType } from './LoginForm/interface';
 import useStores from '../../stores';
 import { MusicNote, MusicOff } from '@material-ui/icons';
+import { LoginPageText } from '../../stores/main/interface';
 
 const songUrl = require('../../assets/molitva.mp3').default;
 
@@ -61,11 +62,19 @@ const LoginPage = () => {
     setIsModalOpened(false);
   }
 
-  if (loginPageText === null) {
-    return <CircularProgress />;
-  }
+  // if (loginPageText === null) {
+  //   return <CircularProgress />;
+  // }
 
-  const { textTitle, textLoginButton, textInfo, textRequestPasswordButton } = loginPageText;
+  const loginPageTextDemo: LoginPageText = {
+    textInfo: 'В память о нежно любимом сыне, младшем брате, верном друге и бесконечно добром человеке….',
+    textLoginButton: 'Войти',
+    textPhotoDescription: 'Сергей Варакин 07.06.1993 – 24.09.2021',
+    textRequestPasswordButton: 'Запросить пароль',
+    textTitle: 'Этот сайт создан для тех, кто знал и любил Сергея, кто хранит о нём добрую память и тепло в сердце.',
+  };
+
+  const { textTitle, textLoginButton, textInfo, textRequestPasswordButton } = loginPageTextDemo;
 
   return (
     <div className={classes.root}>

@@ -24,27 +24,40 @@ const AboutSergeyPage = () => {
     setIsModalOpened(false);
   }
 
-  useEffect(() => {
-    (async () => {
-      if (!aboutSergeyPageText) {
-        try {
-          await fetchAboutSergeyPageText();
-        } catch (e: any) {
-          if (e.response?.data?.statusCode === 401 || e.response?.data?.statusCode === 403) {
-            localStorage.clear();
-            alert('Ваш аккаунт должен быть подтвержден администратором, чтобы вы получили доступ к этой странице');
-            history.push('/');
-          }
-        }
-      }
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     if (!aboutSergeyPageText) {
+  //       try {
+  //         await fetchAboutSergeyPageText();
+  //       } catch (e: any) {
+  //         if (e.response?.data?.statusCode === 401 || e.response?.data?.statusCode === 403) {
+  //           localStorage.clear();
+  //           alert('Ваш аккаунт должен быть подтвержден администратором, чтобы вы получили доступ к этой странице');
+  //           history.push('/');
+  //         }
+  //       }
+  //     }
+  //   })();
+  // }, []);
 
-  if (!aboutSergeyPageText) {
-    return <CircularProgress />;
-  }
+  // if (!aboutSergeyPageText) {
+  //   return <CircularProgress />;
+  // }
 
-  const { textAboutSergey } = aboutSergeyPageText;
+  // const { textAboutSergey } = aboutSergeyPageText;
+
+  const textAboutSergey = `
+    Если вы сейчас на этом сайте, значит вы знали Серёжу и помните о нём.
+    Серёжи больше нет с нами…
+    Единственною что осталось – это память о нём.
+    Сережа не любил фотографироваться, почти никогда не оставлял голосовых сообщений, и не
+    любил говорить о себе.
+    На этом сайте мы, его мама и сестра, расскажем вам о том, каким его знаем мы и просим вас
+    поделиться с нами вашими воспоминаниями о Серёже, фотографиями, голосовыми
+    сообщениями, видео.
+    Спасибо,
+    Мама Наталья Николаевна и сестра Татьяна
+  `;
 
   return (
     <div className={classes.root}>
