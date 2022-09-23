@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.js": "/sergey-memorial/static/js/main.ca52b0ea.chunk.js",
+    "main.js.map": "/sergey-memorial/static/js/main.ca52b0ea.chunk.js.map",
+    "runtime-main.js": "/sergey-memorial/static/js/runtime-main.434eb438.js",
+    "runtime-main.js.map": "/sergey-memorial/static/js/runtime-main.434eb438.js.map",
+    "static/js/2.49d3612d.chunk.js": "/sergey-memorial/static/js/2.49d3612d.chunk.js",
+    "static/js/2.49d3612d.chunk.js.map": "/sergey-memorial/static/js/2.49d3612d.chunk.js.map",
+    "static/js/3.cb86664a.chunk.js": "/sergey-memorial/static/js/3.cb86664a.chunk.js",
+    "static/js/3.cb86664a.chunk.js.map": "/sergey-memorial/static/js/3.cb86664a.chunk.js.map",
+    "index.html": "/sergey-memorial/index.html",
+    "static/js/2.49d3612d.chunk.js.LICENSE.txt": "/sergey-memorial/static/js/2.49d3612d.chunk.js.LICENSE.txt",
+    "static/media/background-img.46728865.jpg": "/sergey-memorial/static/media/background-img.46728865.jpg",
+    "static/media/img.39f37c7c.png": "/sergey-memorial/static/media/img.39f37c7c.png",
+    "static/media/molitva.mp3": "/sergey-memorial/static/media/molitva.ccb07052.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.434eb438.js",
+    "static/js/2.49d3612d.chunk.js",
+    "static/js/main.ca52b0ea.chunk.js"
+  ]
+}
