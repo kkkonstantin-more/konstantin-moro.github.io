@@ -144,6 +144,9 @@ export default class MainStore {
     //   localStorage.setItem('username', res.data.user.username);
     // }
 
+    if (data.password !== 'SergeyMemorial') throw new Error('Invalid password');
+
+    localStorage.setItem('isAuthenticated', 'true');
     history.push('/about');
   };
 }

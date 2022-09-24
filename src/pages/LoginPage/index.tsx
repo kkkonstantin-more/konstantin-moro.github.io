@@ -11,6 +11,7 @@ import { LoginFormType } from './LoginForm/interface';
 import useStores from '../../stores';
 import { MusicNote, MusicOff } from '@material-ui/icons';
 import { LoginPageText } from '../../stores/main/interface';
+import { RouteComponentProps, useHistory } from 'react-router-dom';
 
 const songUrl = require('../../assets/molitva.mp3').default;
 
@@ -19,6 +20,7 @@ const LoginPage = () => {
 
   const { mainStore } = useStores();
   const { fetchLoginPageText, loginPageText } = mainStore;
+  const history: RouteComponentProps['history'] = useHistory();
 
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [loginType, setLoginType] = useState<LoginFormType>(LoginFormType.Default);
@@ -49,6 +51,11 @@ const LoginPage = () => {
   }
 
   function openClosePeopleLogin(): void {
+    if (localStorage.getItem('isAuthenticated') === 'true') {
+      history.push('/about');
+      return;
+    }
+
     setIsModalOpened(true);
     setLoginType(LoginFormType.Default);
   }
@@ -93,9 +100,9 @@ const LoginPage = () => {
           <Button color="primary" onClick={openClosePeopleLogin} variant="outlined">
             {textLoginButton}
           </Button>
-          <Button color="primary" onClick={openGuestsLogin} variant="outlined">
+          {/* <Button color="primary" onClick={openGuestsLogin} variant="outlined">
             {textRequestPasswordButton}
-          </Button>
+          </Button> */}
         </div>
       </div>
 

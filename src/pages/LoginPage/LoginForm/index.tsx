@@ -83,7 +83,7 @@ const LoginForm = ({ type }: LoginFormProps) => {
 
   return (
     <div className={classes.root}>
-      <Tabs
+      {/* <Tabs
         className={classes.tabs}
         onChange={(event: React.ChangeEvent<{}>, newValue: LoginFormType) => {
           setSelectedTab(newValue);
@@ -95,7 +95,7 @@ const LoginForm = ({ type }: LoginFormProps) => {
       >
         <Tab value={LoginFormType.Default} label="Войти" />
         <Tab value={LoginFormType.Guest} label="Запросить доступ" />
-      </Tabs>
+      </Tabs> */}
 
       <form className={classes.form} onSubmit={handleSubmit(submitForm)} onReset={resetForm}>
         <TextField color="secondary" label={nameLabel} {...register('username')} />

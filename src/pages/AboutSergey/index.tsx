@@ -63,10 +63,10 @@ const AboutSergeyPage = () => {
     <div className={classes.root}>
       <div>{textAboutSergey}</div>
       <div style={{ marginTop: '4rem' }}>
-        <div>Если у вас есть чем поделиться, то нажмите на кнопку ниже</div>
+        {/* <div>Если у вас есть чем поделиться, то нажмите на кнопку ниже</div>
         <Button color="primary" variant="outlined" onClick={openModal} style={{ margin: '2rem 0 4rem 0' }}>
           Поделиться
-        </Button>
+        </Button> */}
 
         <Modal className={classes.modal} open={isModalOpened} onClose={closeModal}>
           <Paper className={classes.formWrapper}>
